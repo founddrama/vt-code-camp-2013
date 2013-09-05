@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Beyond "ng-hello-world" : Building Real World Web Apps with AngularJS</title>
+
+    <meta name="description" content="AngularJS is an open-source front-end MVC framework from Google for dynamic web apps. On top of the customary MVC features, AngularJS has a rich vocabulary of components including services for code sharing, filters for view layer data transformation, and directives for extending HTML. At Dealer.com, we recently built a centralized remote configuration service and we chose AngularJS to handle the user interface concerns. This talk will provide a high-level introduction to AngularJS, discuss the front-end challenges we faced, and describe how we solved those problems with AngularJS." />
+    <meta name="author" content="Rob Friesel" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/beige.css" id="theme">
+    <link rel="stylesheet" href="css/ng-deck.css">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section data-state="intro" data-background="images/ng-man.jpg">
+          <h1>Beyond<br/><code>ng-hello-world</code></h1>
+          <h2>Building Real World<br/>Web Apps with AngularJS</h2>
+          <h3>by Rob Friesel</h3>
+
+          <aside class="notes" data-markdown>
+            ### Abstract
+            > AngularJS is an open-source front-end MVC framework
+            > from Google for dynamic web apps. On top of the
+            > customary MVC features, AngularJS has a rich
+            > vocabulary of components including services for code
+            > sharing, filters for view layer data transformation,
+            > and directives for extending HTML. At Dealer.com, we
+            > recently built a centralized remote configuration
+            > service and we chose AngularJS to handle the user
+            > interface concerns. This talk will provide a high-
+            > level introduction to AngularJS, discuss the front-
+            > end challenges we faced, and describe how we solved
+            > those problems with AngularJS.
+          </aside>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            <div id="headshot"></div>
+            ## Who is this guy?
+
+            # Rob Friesel
+
+            - Sr. UI Developer at Dealer.com
+            - [@founddrama](https://twitter.com/founddrama)
+            - [blog.founddrama.net](http://blog.founddrama.net)
+            - [github.com/founddrama](http://github.com/founddrama)
+          </script>
+        </section>
+        
+        <section>
+          <section data-state="dark" data-background="images/avengers-talking.jpg">
+              <h1>What are we talking about?</h1>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              # [AngularJS](http://angularjs.org)
+
+              <div class="angular-logo half"></div>
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              # "Superheroic JavaScript MVW Framework"
+
+              <div class="angular-logo quarter"></div>
+            </script>
+          </section>
+
+          <section>
+            <div class="angular-logo quarter"></div>
+            <ul>
+              <li class="fragment roll-in">open source</li>
+              <li class="fragment roll-in">from Google</li>
+              <li class="fragment roll-in">for building complex web apps</li>
+            </ul>
+            <aside class="notes" data-markdown>
+              * re: open source: MIT
+              * this is the part where I mention the Tripoli case study
+            </aside>
+          </section>
+          
+          <section data-state="toolset-quote">
+            <blockquote>...a toolset for building the framework most suited to your application development.</blockquote>
+            <div class="angular-logo quarter"></div>
+            <aside class="notes" data-markdown>
+              * "It's like Clojure or some other Lisp like that..."
+                * it's the tools to build the tools...
+                * "Not quite macros but..."
+            </aside>
+          </section>
+        </section>
+
+        <section data-state="dark" data-background="images/Magneto-arms-crossed.jpg">
+          <h1 class="fragment fade-out">Whare are we <em>not</em> talking about?</h1>
+          <ul>
+            <li class="fragment roll-in">"the basics"</li>
+            <li class="fragment roll-in">comprehensive feature coverage</li>
+            <li class="fragment roll-in">side-by-side comparisons</li>
+            <li class="fragment roll-in">pros/cons of single-page apps</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            * re: "the basics" - philosophy: yes; but only the
+              briefest intro
+              * there are already lots of good intro tutorials
+            * re: "feature coverage": _not_ here to introduce and/or
+              discuss every feature
+              * won't be talking about routes (much), views,
+                resource plugin, etc.
+            * re: "side-by-side" - this is _not_ "Angular vs. Ember"
+            * re: "SPAs" - I assume you've already done your own
+              homework on this subject
+          </aside>
+        </section>
+
+        <section data-state="dark" data-background="images/introducing-spiderman.jpg">
+          <section>
+            <h1>AngularJS</h1>
+            <h3>a lightning tour</h3>
+          </section>
+          <section>
+            <h1>MVW<sup><small>1</small></sup>!</h1>
+            <div><small>1: "M-V-Whatever"</small>
+            <aside class="notes" data-markdown>
+              * "You probably already know that..."
+              * "...know what that means..."
+              * the whatever is _their_ term
+            </aside>
+          </section>
+          <section>
+            <h1>Customary Features!</h1>
+            <ul>
+              <li class="fragment roll-in">declarative data-binding</li>
+              <li class="fragment roll-in">client-side controllers</li>
+              <li class="fragment roll-in">separation of concerns</li>
+            </ul>
+          </section>
+          <section>
+            <h1>Opinionated in the Middle</h1>
+            <img src="images/ng-figure-1.png"/>
+            <aside class="notes" data-markdown>
+              * some explanation is in order
+              * UN-opinionated about models ("mostly")
+                * c/w Backbone, Ember
+              * UN-opinionated about views ("mostly")
+                * we've heard this before
+                  * (Murphey, 2012; re: Backbone)
+                * similar critique as hers?
+                * and/but (TO TOTALLY UNDERMINE MYSELF HERE...)
+                  plenty of "magic" in the views by way of directives
+              * "So why _opinionated in the middle_ ?"
+                * RE: opinions about how to separate code
+                * RE: opinions about how to re-use code
+                * RE: opinions about how to fit things together
+                * examples:
+                  * controllers call services directly
+                  * directives get their own scope whenever possible
+                  * (_WHAT ELSE?_)
+                  * "Does this all seem like common sense?"
+            </aside>
+          </section>
+        </section>
+
+        <section data-state="dark" data-background="images/action-comics-1.jpg">
+          <h1><a href="../example/index.html">a trivial example</a></h1>
+          <aside class="notes" data-markdown>
+            * example Angular "app" put together in approx. 30 min
+            * uses Bootstrap (_only_ for CSS) and _only_ Angular
+            * nothing fancy/crazy - just an ng-controller
+              * and the stock filters/directives
+              * only service = $window
+            * noted: `ng-app` (don't forget this)
+            * noted: `ng-app` (remember to tell it your module)
+              * b/c you _are_ going to want to use the modules
+          </aside>
+        </section>
+
+        <section data-state="dark" data-background="images/professor-x.jpg">
+          <section>
+            <h1>The Angular Way</h1>
+          </section>
+          <section>
+            <h1>"lethally allergic to global state"</h1>
+            <aside class="notes" data-markdown>
+              * get this point out of the way right off the bat
+              * module pattern more/less enforced by the framework
+              * if you're writing idiomatic Angular it should be hard to
+                accidentally leak globals
+            </aside>
+          </section>
+          <section>
+            <h1>"Hands off the DOM."</h1>
+            <aside class="notes" data-markdown>
+              * JS is for business logic (mostly)
+              * services should never touch the DOM
+              * controllers should _almost_ never touch the DOM
+              * filters won't even let you "do HTML"
+              * directives: if you need to touch the DOM, do it here
+            </aside>
+          </section>
+          <section>
+            <h1>"extend HTML vocabulary"</h1>
+            <aside class="notes" data-markdown>
+              * HTML: great for static docs
+              * JS: actually a pretty nice language for solving problems
+                * and even if you don't like it... you're stuck with it
+              * HTML + JS: starts to give you what you want
+              * but what you want are dynamic docs
+              * now: how do you _want_ to wire things up?
+              * ANECDOTES: compare/contrast
+                * dev work w/ something like ExtJS
+                  * "do it all in JS" (and/but: what about the mark-up?)
+                * HTML + jQuery = jQuery soup
+                * Knockout: getting warmer...
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section data-state="dark" data-background="images/dr-octopus-arms.jpg">
+            <h1>The Mechanics</h1>
+          </section>
+          <section>
+            <ul>
+              <li class="fragment roll-in">Controllers &amp; <code>$scope</code></li>
+              <li class="fragment roll-in">Services</li>
+              <li class="fragment roll-in">Filters</li>
+              <li class="fragment roll-in">Directives</li>
+            </ul>
+          </section>
+          <section>
+            <h1>controllers &amp; <code>$scope</code></h1>
+            <aside class="notes" data-markdown>
+              * "familiar with controllers"
+                * from other MVCs...
+              * arguably more of a "ViewModel"
+                * c/w Knockout.js
+              * main function of controller:
+                * set up execution context for your views
+                  * that's `$scope`
+                * putting your data onto `$scope`
+                * putting your methods etc. onto `$scope`
+                  * example:
+                    * `ng-hide="{{ thing == true }}"`
+                    * and/but have that more than once and consider
+                    * `ng-hide="hasThing()"`
+              * yes: you can have more than 1 per "page"
+                * and you _should_ b/c each controller should really just be responsible for
+                  _one thing_
+              * `$scope` inheritance
+                * as prototypal...
+                * controllers w/in controllers...
+                * directives w/in controllers
+                * `$scope.thing` ... `thing` may _actually_ be from `$scope.$parent`
+                * see also: `$rootScope`
+            </aside>
+          </section>
+          <section>
+            <h2>example controller</h2>
+
+            <pre class="fragment grow"><code class="javascript" data-trim>
+angular.module('books').controller('BookListController', [
+  // set up dependency injection:
+  '$scope', '$window',
+  // controller (DI through function arguments)
+  function($scope, $window) {
+    $scope.books = $window.BOOKS;
+
+    $scope.getStarClass = function(rating, compare) {
+      return 'glyphicon glyphicon-star' +
+        ((rating > compare) ? '' : '-empty');
+    };
+
+    // and so on
+  }
+]);
+            </code></pre>
+          </section>
+          <section>
+            <h2>...and hook it up</h2>
+            <pre class="fragment grow"><code class="html" data-trim>
+&lt;!DOCTYPE html>
+&lt;html lang="en" ng-app="books">
+
+  &lt;body>
+    &lt;div ng-controller="BookListController">
+      &lt;table>
+        &lt;tr ng-repeat="book in books">
+          &lt;td>{{book.title}}&lt;/td>
+          &lt;td>{{book.author}}&lt;/td>
+          &lt;td>{{book.rating}}&lt;/td>
+        &lt;/tr>
+      &lt;/table>
+    &lt;/div>
+  &lt;/body>
+
+&lt;/html>
+            </code></pre>
+          </section>
+          <section>
+            <h2>roughly illustrated</h2>
+            <img src="images/ng-figure-2.png"/>
+            <aside class="notes" data-markdown>
+              * important point: `$scope` is not your model
+              * `$scope` is the surface area b/w controller + view
+              * remember: ng has not strong opinions about model
+                * "bring your own model" philosophy
+                * your model is largely a back-end concern
+                * (hence putting it in a little abstract cloud here)
+              * 2-way relationships, but mediated
+            </aside>
+          </section>
+          <section>
+            <h1>Services</h1>
+            <aside class="notes" data-markdown>
+              * anything you want to share b/w controllers
+              * you're not setting up inheritance chains b/w controllers
+              * share code through DI
+                * side note: the "DI" bit bothers me - you're just
+                  passing references to the service singletons into your
+                  controllers as function args
+                * _anyway_ - "inject" as args into contructor functions
+                  for controllers, directives, other services
+                * side note: the DI winds up feeling a bit like "ceremony"
+              * THINK FUNCTIONALLY HERE
+                * w/ services you don't want side effects
+                  * (just arguments and return values)
+                * (side note: Angular is designed to not have side effects - remember: "lethally allergic to global state")
+            </aside>
+          </section>
+          <section>
+            <h2>example service</h2>
+            <pre class="fragment grow"><code class="javascript" data-trim>
+angular.module('books').factory('goodreadsService', ['$http',
+  function($http) {
+    function getShelf(userId, shelf) {
+      return $http.get(GOODREADS_HOST + REVIEWS_LIST, {
+        params: {
+          v: 2, key: API_KEY,
+          id: userId, shelf: shelf
+        }
+      });
+    }
+
+    return {
+      getShelf: getShelf
+    };
+  }
+]);
+            </code></pre>
+          </section>
+          <section>
+            <h1>Filters</h1>
+            <aside class="notes" data-markdown>
+              * _don't_ transform data in your controllers
+              * data (on your model) goes _directly_ to the view via
+                `$scope`
+              * then: `{{ value | filter: filterArg }}`
+                * transformations happen like that
+              * AGAIN : the idea there is to minimize side effects
+                * i.e., don't transform the data "in place" (in the model)
+                * transform it for the view where it makes sense (in the
+                  view)
+              * "pure functions" - simply returning the transformed value
+                to the rendered view
+            </aside>
+          </section>
+          <section>
+            <h2>example filter</h2>
+            <pre class="fragment grow"><code class="javascript" data-trim>
+angular.module('books').filter('dropSubTitle', [
+  function() {
+    return function(input, token) {
+      return input.split(token || ':')[0];
+    };
+  }
+]);
+            </code></pre>
+          </section>
+          <section>
+            <h2>...and using it</h2>
+            <pre class="fragment grow"><code class="html" data-trim>
+&lt;ul>
+  &lt;li ng-repeat="book in books">
+    &lt;em ng-bind="book.title | dropSubTitle:'-'">&lt;/em> by
+    &lt;span ng-bind="book.author">&lt;/span>
+  &lt;/li>
+&lt;/ul>
+            </code></pre>
+          </section>
+          <section>
+            <h1>Directives</h1>
+            <aside class="notes" data-markdown>
+              * THIS IS THE MAGIC
+              * "extending" HTML
+                * turns `<div my-directive></div>` into... whatever
+                  you want
+              * directives and `$scope`
+              * compiling + linking
+              * templates + templateUrl
+              * restriction
+                * Attributes
+                * Classes
+                * Elements
+                * coMments
+              * the "core" ng directives make up the heart of the
+                framework
+                * `ng-app`? `ng-controller`? consider that those are
+                  both directives necessary to even bootstrap the app
+              * EXCELLENT WAY to break your app down into small pieces
+            </aside>
+          </section>
+          <section>
+            <h2>example directive</h2>
+            <pre class="fragment grow"><code class="javascript" data-trim>
+angular.module('books').directive('grRating', [
+  function() {
+    return {
+      replace: true,
+      restrict: 'AC',
+      templateUrl: '/ng-templates/gr-rating',
+      scope: { rating: '=' },
+      link: function(scope, element, attrs) {
+        scope.getStarCss = function(compare) {
+          return 'glyphicon-star' +
+            ((scope.rating > compare) ? '' : '-empty';
+        };
+      }
+    };
+  }
+]);
+            </code></pre>
+          </section>
+          <section>
+            <h2>/ng-templates/gr-rating</h2>
+            <pre class="fragment grow"><code class="html" data-trim>
+&lt;div>
+  &lt;span class="glyphicon" ng-class="getStarCss(0)">&lt;/span>
+  &lt;span class="glyphicon" ng-class="getStarCss(1)">&lt;/span>
+  &lt;span class="glyphicon" ng-class="getStarCss(2)">&lt;/span>
+  &lt;span class="glyphicon" ng-class="getStarCss(3)">&lt;/span>
+  &lt;span class="glyphicon" ng-class="getStarCss(4)">&lt;/span>
+&lt;/div>
+            </code></pre>
+          </section>
+          <section>
+            <h2>using that directive</h2>
+            <pre class="fragment grow"><code class="html" data-trim>
+&lt;div ng-controller="BookListController">
+  &lt;ul>
+    &lt;li ng-repeat="book in books">
+
+      &lt;!-- and our directive: -->
+      &lt;span gr-rating data-rating="book.rating">&lt;/span>
+
+    &lt;/li>
+  &lt;/ul>
+&lt;/div>
+            </code></pre>
+            <aside class="notes" data-markdown>
+              * mention: could have done it using a class
+            </aside>
+          </section>
+          <section>
+            <h1>...and much more!</h1>
+            <ul>
+              <li class="fragment roll-in">core APIs</li>
+              <li class="fragment roll-in">jqLite</li>
+              <li class="fragment roll-in">routes</li>
+              <li class="fragment roll-in"><code>$apply</code>, <code>$digest</code>, and <code>$watch</code>...</li>
+              <li class="fragment roll-in">testing</li>
+            </ul>
+            <aside class="notes" data-markdown>
+              * plenty I'm not covering here
+              * core APIs
+                * called "global APIs" in the docs
+                  * but hey... "global" is a dirty word
+                * the point: some utils to help keep other libraries out
+                  * not _to_ keep them out but: why bring in all of jQuery
+                    if all you need are some simple selectors?
+                  * which leads us to...
+              * jqLite (explain!)
+              * routes (for making sane and sensible and shareable URLs
+                for client-side state...)
+              * `$apply`, `$digest`, + `$watch`
+                * noted: some of the "magic" around `$scope` objects
+                * the digests are on short but regular intervals
+                * ...to try to prevent ng from performing poorly
+                  * "don't watch yourself to death"
+                * some added security there - i.e., throw errors if
+                  items in the apply/digest loop start setting each
+                  other recursively and dangerously
+              * testing (testable out of the box!)
+            </aside>
+          </section>
+        </section>
+
+        <section data-background="images/beast-glasses.jpg">
+          <section>
+            <h1>Tripoli</h1>
+            <h2>a case study</h2>
+          </section>
+          <section>
+            <h2>real quick:</h2>
+            <h1>What is Tripoli?</h1>
+            <blockquote class="ghost-block fragment roll-in">
+              ...leveraging ZooKeeper, we at Dealer.com have built a centralized, remote configuration service that provides consistent, flexible and accountable configurations to applications in our enterprise.
+            </blockquote>
+            <h3 class="front-end-for-that fragment roll-in">
+              Tripoli is the front-end for that
+            </h3>
+            <aside class="notes" data-markdown>
+              * refer back to Pearlin's talk
+              * quick-n-dirty definition for centralized config
+              * Tripoli as the front-end app for that
+                * "making simple that which is not"
+              * explain the pun:
+                * Externalized Environmental End-Point Config Service
+                * -> EEECS -> "triple-E" -> Tripoli
+                * haha
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section data-state="dark" data-background="images/batman.jpg">
+            <h1>Why Angular?</h1>
+            <aside class="notes" data-markdown>
+              * "Preface this discussion by saying..."
+              * we already knew that we needed client-side
+                * the way that we were working w/ the config trees
+                * (recall: not discussing pros/cons of SPAs here)
+              * as a co. we'd done some experiments with a few
+                client-side MVCs...
+              * most success w/ Angular so... prototype w/ Angular
+                * (and prototype worked well and grew...)
+            </aside>
+          </section>
+          <section>
+            <h1>Separation of Concerns</h1>
+            <aside class="notes" data-markdown>
+              * ng idioms encourage strong/opinionated ways to separate your code
+              * see above: controllers, services, filters, directives, etc.
+              * the idioms behind that SOC make it easy to figure out where everything is
+                * i.e., you aren't wondering about some magical class that is magically picked up by jQuery...
+                * ...ng-controller tells you exactly what to look for
+            </aside>
+          </section>
+          <section>
+            <h1>Idiomatic</h1>
+            <aside class="notes" data-markdown>
+              * services: look a certain way
+              * controllers: look a certain way
+              * directives + filters : ...you get the idea
+              * "idiomatic Angular" : guided by the opinionated SOC
+              * this makes it easy to jump right in and know what's going on
+            </aside>
+          </section>
+          <section>
+            <h1>Velocity</h1>
+            <aside class="notes" data-markdown>
+              * not just a buzzwordy "Agile" word!
+              * SOC leads to idiomaticity
+                * idiomaticity leads to clarity
+                  * clarity leads to simplicity
+              * w/ ng we were able to iterate quickly
+              * w/ ng we were able to refactor quickly
+                * example: the "params as DI" idiom makes it very easy to
+                  find where a given service is being used
+                * example: b/c of the declarative nature of controllers
+                  and directives... it's also easy to find where they are
+                  used
+                  * "And also the reverse..." (but more on that in a bit)
+              * w/ ng we were able to on-board another UI dev quickly
+            </aside>
+          </section>
+          <section>
+            <h1>Modules</h1>
+            <aside class="notes" data-markdown>
+              * ng module system keeps everything out of the global scope
+              * effectively zero chance of stomping all over something
+                provided by some other library, etc.
+              * granted: ng module system isn't buying you anything
+                super-fancy (e.g., not AMD style lazy-loading or anything
+                like that)
+              * but use it now b/c who knows what the next version will
+                bring?
+            </aside>
+          </section>
+          <section>
+            <h1>Great Developer Community</h1>
+            <h2 class="fragment roll-in">...and getting better all the time</h2>
+            <aside class="notes" data-markdown>
+              * anecdote: select2
+                * needed to use it in the app...
+                * tried to hook into it w/ "naked ng"
+                * tried to roll our own wrapper directive
+                  * quickly discovered there was more to it...
+                * found "AngularUI" + its `select2` directive
+                  * did the trick (and in way less time)
+              * other notes on this:
+                * >280 packages in Bower
+                * >3300 questions on Stack Overflow
+                * >7800 threads on the Google Group
+            </aside>
+          </section>
+          <section>
+            <h1>"It's just JavaScript!"</h1>
+            <aside class="notes" data-markdown>
+              * "You hear this a lot..."
+                * the smaller the framework, the louder this is touted?
+              * and/but - "normal patterns apply"
+                * lots of "pure functions"
+                * "pure fns" attached to `$scope`
+                * basically one big module pattern all over the place
+              * exceptions to this?
+                * data binding may require some dances w/ `$watch` and
+                  `$apply` etc. (but most of the time not)
+                * see also the `@` + `=` + `&` stuff with directives
+                  * "but you get used to it"
+            </aside>
+          </section>
+          <section>
+            <h1>Testable</h1>
+            <aside class="notes" data-markdown>
+              * hoping by the time I give this talk, this isn't an empty statement...
+              * ng as testable "out of the box"
+              * ng idioms as being easily testable
+                * and/or encouraging testability
+              * ...so? anything to show for it?
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section data-state="dark" data-background="images/joker.jpg">
+            <h1>Difficulties, Hitches, Pitfalls, Problems, and Other Realities</h1>
+            <aside class="notes" data-markdown>
+              * not all unicorns and rainbows
+              * a couple of things are ... weird
+            </aside>
+          </section>
+          <section>
+            <h1>Documentation</h1>
+            <h2 class="fragment roll-in">Not Actually That Great</h2>
+            <aside class="notes" data-markdown>
+              * NOT ACROSS THE BOARD!
+              * some of the docs are actually really good
+              * but about 50% of the API docs feel about 50% done
+                * information seems to be missing
+                * or else the example provided is... too simple
+              * Developer Guide is richer, but takes a lot more digging
+              * forums + Stack Overflow are good resources but the usual
+                warnings for those apply...
+            </aside>
+          </section>
+          <section>
+            <h1>Examples</h1>
+            <h2 class="fragment roll-in">Not Always the Safest</h2>
+            <aside class="notes" data-markdown>
+              * reiterate : claim : "lethally allergic to global state"
+              * and/but a lot of the examples do "this..."
+                * (reveal code example)
+            </aside>
+          </section>
+          <section>
+            <h3>Bad Example</h3>
+            <pre class="fragment grow"><code class="javascript">
+// taken right from the AngularJS home page...
+function TodoCtrl($scope) {
+  $scope.todos = [ /*todos...*/ ];
+  // etc.
+}
+            </code></pre>
+            <aside class="notes">
+              **RIGHT OFF THE BAT...***
+
+              * a function that goes right into the global ns
+              * `$scope` through DI and/but that won't survive
+                minification
+              * seems minor and forgivable but...
+            </aside>
+          </section>
+          <section>
+            <h1>"Where do I begin?"</h1>
+            <aside class="notes" data-markdown>
+              * tutorial is OK and/but...
+              * difficult to know where to start with some of ng's
+                concepts/features
+              * given that the examples appear to lead you ever so
+                slightly astray, there is an argument to make there that
+                the credibility is a bit hurt
+              * BACK UP : most things you _can_ just pick up and start
+                using
+              * BUT again ng is more of a fwk than a lib
+                * and as such: you're using it to "build apps"
+                * you _can_ just sprinkle a little bit in to your
+                  existing apps
+                * but I'm not sure that that's where you'll get the most
+                  value (i.e., best results from going all in?)
+              * in other words: although you _can_ try to just sprinkle it
+                in a little bit at a time to experiment with it, you're
+                likely to get better results if you do some up-front
+                research and design...
+            </aside>
+          </section>
+          <section>
+            <h1>Whither Animation?</h1>
+            <aside class="notes" data-markdown>
+              * all that "hands off the DOM" business...
+              * great for decoupling, great for arch.
+              * and/but: "You're a UI developer and you care about that
+                fit-and-finish that goes in to the end result..."
+              * animations are not always gratuitous
+                * they're part of "surprise and delight"
+                * they're part of your brand
+                * and they can serve a _function_ in your UI as well
+                * (but you already know this...)
+              * ng can make this... difficult sometimes
+              * through 1.0.8 there is nothing build-in
+                * and the 1.1.x stuff is unstable
+                * and I can't say I've figured out the 1.2.0 animation
+                  support yet
+                * (and/but: links!)
+              * you can get down into the directives to do some of this
+                * recall: directive are where it's "safe" to do DOM
+                  manipulation
+              * and/but : pros and cons here
+                * restricting DOM manipulation to directives makes a lot
+                  of sense
+                * but sometimes it also feels like overkill?
+            </aside>
+          </section>
+          <section>
+            <h1><code>$apply</code> and the <code>$digest</code></h1>
+            <h2>"slippery scope"</h2>
+            <aside class="notes" data-markdown>
+              * ng does a lot of work "for you" w/r/t/ tracking values
+                that are attached to `$scope`
+                * (that's the `$digest`)
+              * and/but it isn't always clear how or why or when you can
+                update items directly and have it "just work" and when
+                you need to hit it `$apply`
+              * the rule of thumb from the docs: use `$apply` whenever
+                "non-ng" code is updating values in ng scopes
+              * which seems like a simple enough rule except...
+                * ...when you _do_ update w/o `$apply` and think that
+                  you _should have_ but then it just works anyway; vs.
+                * ...when you update a value fr/ w/in ng but it doesn't
+                  (appear) to update the way it "should"
+                * CAN BE CONFUSING
+              * also: be doubly careful w/ the latter case: it's almost
+                too easy to think "oh I just need to wrap that in an
+                `$apply`" and then you get that error about already being
+                in a `$digest` cycle etc.
+            </aside>
+          </section>
+          <section>
+            <h1>Temptation to Fight the Framework</h1>
+            <aside class="notes" data-markdown>
+              * the temptation is strong
+              * b/c ng is probably quite unlike any front-end fwk you've
+                dealt with before
+              * anecdote: events
+                * I wanted to use events in a certain way...
+                * ...b/c that's how I've done it in other fwks
+                  (e.g., ExtJS)
+                * ...but Stack Overflow thread leads us to a classic
+                  case of "you're doing it wrong"
+              * observation: temptation to use `$scope` as model
+              * controversy: the `ng-` attrs...
+                * they _feel_ dirty
+                * b/c we've spent the last couple years arguing about
+                  `onclick` + the like
+                * "decouple your HTML and JS!"
+                * will feel like _that_
+                  * see also: that HN thread from 6 months ago...
+                * ANYWAY: don't think of it as tightly coupling your
+                  DOM to your JS; think of it as turning your HTML into
+                  a potent DSL for your app
+              * (starting to sound like a selling point, eh?)
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section data-state="dark" data-background="images/justice-league.jpg">
+            <h1>Putting It All Together</h1>
+          </section>
+          <section>
+            <h1>Be Conservative with Controllers</h1>
+            <aside class="notes" data-markdown>
+              * w/ controllers: less is more...
+              * set up your `$scope` and ask hard questions if you wind
+                up doing anything else
+            </aside>
+          </section>
+          <section>
+            <h1>Be Liberal with Directives</h1>
+            <aside class="notes" data-markdown>
+              * take the time to learn directives
+              * use the built-in stuff as much as you can
+              * but directives are where you'll see your most powerful
+                code re-use
+            </aside>
+          </section>
+          <section>
+            <h1>Organize Your Code Early</h1>
+            <aside class="notes" data-markdown>
+              * oddly (!?) ng docs don't seem to have any strong opinions
+                about how to organize your ng code
+              * Angular Seed project puts all controllers, filters,
+                services, and directives into one file for each type
+              * instead try something more like...
+            </aside>
+          </section>
+          <section>
+            <h3>Example Angular File Organization</h3>
+            <pre class="fragment grow"><code class="text">
+web-app/
+  js/
+    ng-app-base.js
+    controllers/
+      ExampleController.js
+    directives/
+      ngxDirective.js
+    filters/
+      filterName.js
+    services/
+      exampleService.js
+    lib/
+templates/
+  _ngxDirective
+            </code></pre>
+            <aside class="notes" data-markdown>
+              * variation on Angular Seed
+                * "...but better!"
+              * `ng-app-base.js` (or eq.) is where your modules are
+                declared, where you do global config, etc.
+              * separate directory for each type
+              * each type gets its own file
+                * (you're concat'ing and min'ing anyway, right?)
+              * each file should match what is inside
+                * makes everything easy to find
+              * templates: each partial name should match the directive
+                that it corresponds with
+                * (we use Grails so ours went into...)
+              * side note: directive namespace! decide on one early
+                * use a good (short!) one for your app-specific stuff
+                * and if you can't decide on one... use `ngx-`
+                  * for "ng-extended"
+            </aside>
+          </section>
+        </section>
+
+        <section data-state="dark" data-background="images/riddler.jpg">
+          <h1>Questions?</h1>
+        </section>
+
+        <section data-state="dark" data-background="images/deadpool-that-was-awesome.jpg">
+          <h1>Thanks!</h1>
+        </section>
+        
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+    <script>
+      var useMarkdown = !!document.querySelector('[data-markdown]'),
+          hasClassList = !!document.body.classList;
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: Reveal.getQueryHash().transition || 'zoom',
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !hasClassList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return useMarkdown; } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return useMarkdown; } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return hasClassList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return hasClassList; } }
+        ]
+      });
+    </script>
+
+  </body>
+</html>

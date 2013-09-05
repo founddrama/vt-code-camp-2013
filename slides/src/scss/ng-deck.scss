@@ -1,0 +1,82 @@
+@import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
+@import "compass/css3/transform";
+@import "compass/css3/transition";
+@import "compass-settings";
+
+.dark {
+  .reveal {
+    * {
+      color: white;
+    }
+
+    a:not(.image) {
+      color: lighten(#8b743d, 30%);
+      &:hover { color: white; }
+    }
+  }
+}
+
+.intro {
+  h1 {
+    font-size: 6em;
+  }
+
+  .slides > section code {
+    white-space: nowrap;
+    text-transform: lowercase;
+    display: block;
+    position: relative;
+    right: 7%;
+    font-size: 0.6em;
+    font-weight: 900;
+  }
+}
+
+.toolset-quote {
+  .reveal blockquote {
+    font-size: 1.5em;
+  }
+}
+
+#headshot {
+  background: image-url("headshot.jpg") center center / 100% no-repeat;
+  width: 215px;
+  height: 269px;
+  border: 16px rgba(250, 250, 250, 0.9) solid;
+  @include rotate(4deg);
+  position: absolute;
+  right: 0;
+  bottom: -150px;
+  @include box-shadow();
+}
+
+.reveal {
+  div {
+    .angular-logo {
+      background: image-url("AngularJS-Shield.png") center center / 100% no-repeat;
+      height: 1247px;
+      width: 1184px;
+      margin: 0 auto;
+
+      &.half {
+        height: 623px;
+        width: 592px;
+      }
+
+      &.quarter {
+        height: 312px;
+        width: 296px; 
+      }
+    }
+  }
+
+  .ghost-block {
+    background-color: rgba(250, 250, 250, 0.66);
+  }
+
+  .front-end-for-that {
+    color: white;
+    @include text-shadow(1px 1px 1px #333);
+  }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="books">
+
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS example</title>
+  <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div class="container" ng-controller="BookListController">
+    <h1>JavaScript Books</h1>
+
+    <div class="well">
+      <label>Search:</label> <input type="text" ng-model="searchText" />
+      <label>Hide covers</label> <input type="checkbox" ng-click="toggleCovers()"/>
+      <label>Hide unread</label> <input type="checkbox" ng-click="toggleReadFilter()"/>
+      <label>"I helped with that!"</label> <input type="checkbox" ng-click="toggleHelpedFilter()"/>
+    </div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Book</th>
+          <th>Author</th>
+          <th>Read</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="book in books | filter:isReadAndFiltered | filter:isEditedByMe | filter:searchText">
+          <td>
+            <img ng-class="{hide: hideCovers}" ng-src="{{book.cover}}"/>
+          </td>
+          <td>
+            <em>{{book.title}}</em> (<a ng-href="{{book.url}}">review</a>)
+          </td>
+          <td>
+            {{book.author}}
+          </td>
+          <td>
+            {{book.finished | date:'MMM d, y'}}
+          </td>
+          <td style="white-space:nowrap;">
+            <span ng-class="getStarClass(book.rating, 0)"></span><span ng-class="getStarClass(book.rating, 1)"></span><span ng-class="getStarClass(book.rating, 2)"></span><span ng-class="getStarClass(book.rating, 3)"></span><span ng-class="getStarClass(book.rating, 4)"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  
+
+  <script type="text/javascript" src="books.js"></script>
+  <script type="text/javascript" src="lib/js/angular.min.js"></script>
+  <script type="text/javascript" src="ng-book-module.js"></script>
+</body>
+
+</html>

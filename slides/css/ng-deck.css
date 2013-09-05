@@ -1,0 +1,62 @@
+.dark .reveal * {
+  color: white;
+}
+.dark .reveal a:not(.image) {
+  color: #cfbd92;
+}
+.dark .reveal a:not(.image):hover {
+  color: white;
+}
+
+.intro h1 {
+  font-size: 6em;
+}
+.intro .slides > section code {
+  white-space: nowrap;
+  text-transform: lowercase;
+  display: block;
+  position: relative;
+  right: 7%;
+  font-size: 0.6em;
+  font-weight: 900;
+}
+
+.toolset-quote .reveal blockquote {
+  font-size: 1.5em;
+}
+
+#headshot {
+  background: url('../images/headshot.jpg?1256871039') center center/100% no-repeat;
+  width: 215px;
+  height: 269px;
+  border: 16px rgba(250, 250, 250, 0.9) solid;
+  -webkit-transform: rotate(4deg);
+  transform: rotate(4deg);
+  position: absolute;
+  right: 0;
+  bottom: -150px;
+  -webkit-box-shadow: 0px 0px 5px #999999;
+  box-shadow: 0px 0px 5px #999999;
+}
+
+.reveal div .angular-logo {
+  background: url('../images/AngularJS-Shield.png?1378259646') center center/100% no-repeat;
+  height: 1247px;
+  width: 1184px;
+  margin: 0 auto;
+}
+.reveal div .angular-logo.half {
+  height: 623px;
+  width: 592px;
+}
+.reveal div .angular-logo.quarter {
+  height: 312px;
+  width: 296px;
+}
+.reveal .ghost-block {
+  background-color: rgba(250, 250, 250, 0.66);
+}
+.reveal .front-end-for-that {
+  color: white;
+  text-shadow: 1px 1px 1px #333333;
+}

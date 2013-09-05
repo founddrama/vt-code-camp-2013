@@ -16,3 +16,21 @@ A presentation by Rob Friesel (@founddrama) for [VT Code Camp 5](http://vtcodeca
 > high-level introduction to AngularJS, discuss the front-end challenges we
 > faced, and describe how we solved those problems with AngularJS.
 
+### References
+
+[1]: http://angularjs.org/ "AngularJS"
+[2]: http://angular-ui.github.io/ "AngularUI"
+[3]: https://github.com/angular/angular.js/wiki/Understanding-Scopes "Understanding Scopes"
+[4]: http://docs.angularjs.org/guide/dev_guide.services.creating_services "AngularJS Docs: Creating Services"
+[5]: http://wekeroad.com/2013/04/25/models-and-services-in-angular "Models and Services in Angular"
+[6]: http://oscarvillarreal.com/2013/05/07/5-reasons-to-use-angularjs-in-the-corporate-app-world/ "5 reasons to use AngularJS in the corporate app world"
+[7]: http://pseudobry.com/building-large-apps-with-angularjs.html "Building large apps with AngularJS"
+[8]: http://www.jacopretorius.net/2013/07/angularjs-best-practices.html "AngularJS Best Practices"
+[9]: http://www.jacopretorius.net/2013/07/angularjs-pain-points.html "AngularJS Pain Points"
+[10]: http://branchandbound.net/blog/web/2013/08/some-angularjs-pitfalls/ "Some AngularJS pitfalls"
+[11]: http://www.objectpartners.com/2013/08/09/i-wish-i-knew-then-what-i-know-now-life-with-angularjs/ "I Wish I Knew Then What I Know Now — Life With AngularJS"
+[12]: http://www.2ality.com/2013/05/google-polymer.html "Google’s Polymer and the future of web UI frameworks"
+[13]: http://www.alexrothenberg.com/2013/02/11/the-magic-behind-angularjs-dependency-injection.html "The \"Magic\" behind AngularJS Dependency Injection"
+[14]: https://news.ycombinator.com/item?id=5526058 "We used to write things like... (HN)"
+[15]: http://blog.stevensanderson.com/2012/08/01/rich-javascript-applications-the-seven-frameworks-throne-of-js-2012/ "Rich JavaScript Applications – the Seven Frameworks (Throne of JS, 2012)"
+[16]: http://rmurphey.com/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/ "Thoughts on a (Very) Small Project With Backbone and Backbone Boilerplate"
