@@ -11,16 +11,6 @@
 > high-level introduction to AngularJS, discuss the front-end challenges we
 > faced, and describe how we solved those problems with AngularJS.
 
-### IDEAS / don't forget these!!!
-
-* "Not covering..." (?)
-  * routes
-* how to structure your ng app
-* testing
-* jqLite
-* Angular UI + Select2 - <https://github.com/angular-ui>
-* approx. 282 Angular packages in Bower
-
 ### Accounting for your time...
 
 | Date | Time |
