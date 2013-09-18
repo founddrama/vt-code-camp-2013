@@ -16,7 +16,30 @@ A presentation by Rob Friesel (@founddrama) for [VT Code Camp 5](http://vtcodeca
 > high-level introduction to AngularJS, discuss the front-end challenges we
 > faced, and describe how we solved those problems with AngularJS.
 
+As stated in the abstract, this talk walks through some of the fundamentals of
+[AngularJS][1], but is not an overview of "the basics"; instead, this talk
+looks at the framework by putting it into the context of building a complex
+real-world application. We discuss some of the pros and cons of using AngularJS,
+as well as make a few recommendations about how to best work with it.
+
 ### References
+
+1. [AngularJS][1]
+2. [AngularUI][2]
+3. [Understanding Scopes][3]
+4. [AngularJS Docs: Creating Services][4]
+5. [Models and Services in Angular][5]
+6. [5 reasons to use AngularJS in the corporate app world][6]
+7. [Building large apps with AngularJS][7]
+8. [AngularJS Best Practices][8]
+9. [AngularJS Pain Points][9]
+10. [Some AngularJS pitfalls][10]
+11. [I Wish I Knew Then What I Know Now — Life With AngularJS][11]
+12. [Google’s Polymer and the future of web UI frameworks][12]
+13. [The "Magic" behind AngularJS Dependency Injection][13]
+14. ["We used to write things like... (HN)"][14]
+15. [Rich JavaScript Applications – the Seven Frameworks (Throne of JS, 2012)][15]
+16. [Thoughts on a (Very) Small Project With Backbone and Backbone Boilerplate][16]
 
 [1]: http://angularjs.org/ "AngularJS"
 [2]: http://angular-ui.github.io/ "AngularUI"
