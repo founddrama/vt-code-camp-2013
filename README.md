@@ -22,6 +22,8 @@ looks at the framework by putting it into the context of building a complex
 real-world application. We discuss some of the pros and cons of using AngularJS,
 as well as make a few recommendations about how to best work with it.
 
+Check it out: <http://founddrama.github.io/vt-code-camp-2013/slides/>
+
 ### References
 
 1. [AngularJS][1]
