@@ -42,6 +42,7 @@ Check it out: <http://founddrama.github.io/vt-code-camp-2013/slides/>
 14. ["We used to write things like... (HN)"][14]
 15. [Rich JavaScript Applications – the Seven Frameworks (Throne of JS, 2012)][15]
 16. [Thoughts on a (Very) Small Project With Backbone and Backbone Boilerplate][16]
+17. [Early Thoughts on AngularJS][17] _(partially to answer "where do I start?")_
 
 [1]: http://angularjs.org/ "AngularJS"
 [2]: http://angular-ui.github.io/ "AngularUI"
@@ -59,3 +60,4 @@ Check it out: <http://founddrama.github.io/vt-code-camp-2013/slides/>
 [14]: https://news.ycombinator.com/item?id=5526058 "We used to write things like... (HN)"
 [15]: http://blog.stevensanderson.com/2012/08/01/rich-javascript-applications-the-seven-frameworks-throne-of-js-2012/ "Rich JavaScript Applications – the Seven Frameworks (Throne of JS, 2012)"
 [16]: http://rmurphey.com/blog/2012/03/11/thoughts-on-a-very-small-project-with-backbone-and-backbone-boilerplate/ "Thoughts on a (Very) Small Project With Backbone and Backbone Boilerplate"
+[17]: http://blog.founddrama.net/2013/08/early-thoughts-on-angularjs/ "Early Thoughts on AngularJS"
