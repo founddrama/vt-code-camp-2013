@@ -119,28 +119,6 @@
           </section>
         </section>
 
-        <section data-state="dark" data-background="images/Magneto-arms-crossed.jpg">
-          <h1 class="fragment fade-out">What are we <em>not</em> talking about?</h1>
-          <ul>
-            <li class="fragment roll-in">"the basics"</li>
-            <li class="fragment roll-in">comprehensive feature coverage</li>
-            <li class="fragment roll-in">side-by-side comparisons</li>
-            <li class="fragment roll-in">pros/cons of single-page apps</li>
-          </ul>
-          <aside class="notes" data-markdown>
-            * re: "the basics" - philosophy: yes; but only the
-              briefest intro
-              * there are already lots of good intro tutorials
-            * re: "feature coverage": _not_ here to introduce and/or
-              discuss every feature
-              * won't be talking about routes (much), views,
-                resource plugin, etc.
-            * re: "side-by-side" - this is _not_ "Angular vs. Ember"
-            * re: "SPAs" - I assume you've already done your own
-              homework on this subject
-          </aside>
-        </section>
-
         <section data-state="dark" data-background="images/introducing-spiderman.jpg">
           <section>
             <h1>AngularJS</h1>
@@ -523,61 +501,6 @@ angular.module('books').directive('grRating', [
           </section>
         </section>
 
-        <section data-background="images/beast-glasses.jpg">
-          <section>
-            <h1>Tripoli</h1>
-            <h2>a case study</h2>
-          </section>
-          <section>
-            <h2>real quick:</h2>
-            <h1>What is Tripoli?</h1>
-            <blockquote class="ghost-block fragment roll-in">
-              ...leveraging ZooKeeper, we at Dealer.com have built a centralized, remote configuration service that provides consistent, flexible and accountable configurations to applications in our enterprise.
-            </blockquote>
-            <h3 class="front-end-for-that fragment roll-in">
-              Tripoli is the front-end for that
-            </h3>
-            <aside class="notes" data-markdown>
-              * refer back to Pearlin's talk
-              * quick-n-dirty definition for centralized config
-              * Tripoli as the front-end app for that
-                * "making simple that which is not"
-              * explain the pun:
-                * Externalized Environmental End-Point Config Service
-                * -> EEECS -> "triple-E" -> Tripoli
-                * haha
-            </aside>
-          </section>
-        </section>
-        <section data-state="dark" data-background="images/iron-man-sights.jpg">
-          <section>
-            <h1>Let's have a quick look...</h1>
-          </section>
-          <section>
-            <img src="images/tripoli/home-screen.png" />
-          </section>
-          <section>
-            <img src="images/tripoli/home-config-search.png" />
-          </section>
-          <section>
-            <img src="images/tripoli/config-editor.png" />
-          </section>
-          <section>
-            <img src="images/tripoli/home-app-search.png" />
-          </section>
-          <section>
-            <img src="images/tripoli/bindings-editor.png" />
-          </section>
-          <section>
-            <img src="images/tripoli/validation.png" />
-          </section>
-          <section>
-            <img src="images/tripoli/submit-a-request.png" />
-          </section>
-          <section>
-            <img src="images/tripoli/committer-preview.png" />
-          </section>
-        </section>
         <section>
           <section data-state="dark" data-background="images/batman.jpg">
             <h1>Why Angular?</h1>
@@ -758,33 +681,6 @@ function TodoCtrl($scope) {
                 in a little bit at a time to experiment with it, you're
                 likely to get better results if you do some up-front
                 research and design...
-            </aside>
-          </section>
-          <section>
-            <h1>Whither Animation?</h1>
-            <aside class="notes" data-markdown>
-              * all that "hands off the DOM" business...
-              * great for decoupling, great for arch.
-              * and/but: "You're a UI developer and you care about that
-                fit-and-finish that goes in to the end result..."
-              * animations are not always gratuitous
-                * they're part of "surprise and delight"
-                * they're part of your brand
-                * and they can serve a _function_ in your UI as well
-                * (but you already know this...)
-              * ng can make this... difficult sometimes
-              * through 1.0.8 there is nothing build-in
-                * and the 1.1.x stuff is unstable
-                * and I can't say I've figured out the 1.2.0 animation
-                  support yet
-                * (and/but: links!)
-              * you can get down into the directives to do some of this
-                * recall: directive are where it's "safe" to do DOM
-                  manipulation
-              * and/but : pros and cons here
-                * restricting DOM manipulation to directives makes a lot
-                  of sense
-                * but sometimes it also feels like overkill?
             </aside>
           </section>
           <section>
