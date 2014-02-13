@@ -35,14 +35,10 @@
             <img ng-class="{hide: hideCovers}" ng-src="{{book.cover}}"/>
           </td>
           <td>
-            <em>{{book.title}}</em> (<a ng-href="{{book.url}}">review</a>)
+            <em ng-bind="book.title"></em> (<a ng-href="{{book.url}}">review</a>)
           </td>
-          <td>
-            {{book.author}}
-          </td>
-          <td>
-            {{book.finished | date:'MMM d, y'}}
-          </td>
+          <td ng-bind="book.author"></td>
+          <td ng-bind="book.finished | date:'MMM d, y'"></td>
           <td style="white-space:nowrap;">
             <span ng-class="getStarClass(book.rating, 0)"></span><span ng-class="getStarClass(book.rating, 1)"></span><span ng-class="getStarClass(book.rating, 2)"></span><span ng-class="getStarClass(book.rating, 3)"></span><span ng-class="getStarClass(book.rating, 4)"></span>
           </td>
