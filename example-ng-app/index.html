@@ -32,7 +32,7 @@
       <tbody>
         <tr ng-repeat="book in books | filter:isReadAndFiltered | filter:isEditedByMe | filter:searchText">
           <td>
-            <img ng-class="{hide: hideCovers}" ng-src="{{book.cover}}"/>
+            <img ng-class="{hide: hideCovers}" ng-src="{{book.cover}}" width="98" height="129"/>
           </td>
           <td>
             <em ng-bind="book.title"></em> (<a ng-href="{{book.url}}">review</a>)

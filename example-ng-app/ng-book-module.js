@@ -1,11 +1,11 @@
 /*globals angular:true */
-(function(ng) {
-  ng.module('books', []);
+(function(ng, booksModule) {
+  booksModule = ng.module('books', []);
 
-  ng.module('books').controller('BookListController', [
+  booksModule.controller('BookListController', [
     '$scope', '$window',
     function($scope, $window) {
-      $scope.books = grDataService.getBook();
+      $scope.books = $window.BOOKS;
 
       $scope.getStarClass = function(rating, compare) {
         return 'glyphicon glyphicon-star' + ((rating > compare) ? '' : '-empty');
@@ -34,7 +34,7 @@
         $scope.helpedFilter = !$scope.helpedFilter;
       };
 
-      var helpedRx = /Functional|Object\-Oriented|Professional/;
+      var helpedRx = /Functional|Object\-Oriented|Professional|PhantomJS/;
       $scope.isEditedByMe = function(book) {
         if (!$scope.helpedFilter) {
           return true;

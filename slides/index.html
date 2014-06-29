@@ -460,13 +460,13 @@ angular.module('books').directive('grRating', [
             </aside>
           </section>
           <section>
-            <h1>...and much more!</h1>
+            <h1>more:</h1>
             <ul>
               <li class="fragment roll-in">core APIs</li>
               <li class="fragment roll-in">jqLite</li>
               <li class="fragment roll-in">routes</li>
-              <li class="fragment roll-in"><code>$apply</code>, <code>$digest</code>, and <code>$watch</code>...</li>
-              <li class="fragment roll-in">testing</li>
+              <li class="fragment roll-in"><code>$apply</code>, <code>$digest</code>, &amp; <code>$watch</code>...</li>
+              <li class="fragment roll-in">strong testing support</li>
             </ul>
             <aside class="notes" data-markdown>
               * plenty I'm not covering here
@@ -560,7 +560,6 @@ angular.module('books').directive('grRating', [
           </section>
           <section>
             <h1>Great Developer Community</h1>
-            <h2 class="fragment roll-in">...and getting better all the time</h2>
             <aside class="notes" data-markdown>
               * anecdote: select2
                 * needed to use it in the app...
@@ -592,7 +591,7 @@ angular.module('books').directive('grRating', [
             </aside>
           </section>
           <section>
-            <h1>Testable</h1>
+            <h1>Highly Testable</h1>
             <aside class="notes" data-markdown>
               * hoping by the time I give this talk, this isn't an empty statement...
               * ng as testable "out of the box"
@@ -764,17 +763,16 @@ function TodoCtrl($scope) {
 web-app/
   js/
     ng-app-base.js
-    controllers/
-      ExampleController.js
-    directives/
-      ngxDirective.js
-    filters/
-      filterName.js
-    services/
-      exampleService.js
+    books/
+      BookController.js
+      star-rating.js
+      star-rating.html
+    authors/
+      AuthorController.js
+      bioService.js
+    common/
+      date-filter.js
     lib/
-templates/
-  _ngxDirective
             </code></pre>
             <aside class="notes" data-markdown>
               * variation on Angular Seed
@@ -797,7 +795,7 @@ templates/
           </section>
         </section>
 
-        <section data-state="dark" data-background="images/riddler.jpg">
+        <section data-state="dark" data-background="http://wac.450f.edgecastcdn.net/80450F/comicsalliance.com/files/2012/05/superdrink.gif">
           <h1>Questions?</h1>
         </section>
 
