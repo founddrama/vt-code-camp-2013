@@ -1,1 +1,4 @@
 slides/node_modules/
+example-ng-app/node_modules/
+example-ng-app/gr-api-token.js
+launchy

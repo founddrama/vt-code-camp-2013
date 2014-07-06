@@ -1,0 +1,11 @@
+{
+  "name": "vtcc-2013-example-ng-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "libxml-to-js": "~0.3.11",
+    "moment": "~2.0.0",
+    "request": "~2.21.0"
+  }
+}
